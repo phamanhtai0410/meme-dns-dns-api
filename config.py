@@ -34,7 +34,8 @@ class Config:
     CELERY_QUEUES = os.getenv('CELERY_QUEUES')
 
     CELERY_ROUTES = {
-        'worker.sample_task': {'queue': 'dns-sample-queue'}
+        'worker.sample_task': {'queue': 'dns-sample-queue'},
+        'worker.task_register_domain': {'queue': 'dns-domain-queue'},
     }
 
     # Redis

@@ -6,6 +6,6 @@
 """
 from resources.user.nfts import UserNFTsResource
 
-user_nfts_resources = {
+user_resources = {
     '/nfts': UserNFTsResource,
 }

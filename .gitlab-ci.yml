@@ -3,6 +3,7 @@ variables:
   IMAGE_NAME: dns-api
   APP_NAME_API: dns-api
   APP_NAME_API_SAMPLE_QUEUE: dns-sample-queue
+  APP_NAME_API_DOMAIN_QUEUE: dns-domain-queue
 
   CONTAINER_REPO_ASIA_STAG: 968557029040.dkr.ecr.ap-southeast-1.amazonaws.com/stag/dns-api
 
@@ -129,6 +130,30 @@ deploy_APP_NAME_API_SAMPLE_QUEUE_stag:
     - git clone https://read-token:$GITLAB_TOKEN@gitlab.rinznetwork.com/rinz-io-devops/helm-value/$HELM_VALUE_FOLDER/$IMAGE_NAME.git
     - mv $IMAGE_NAME/${APP_NAME_API_SAMPLE_QUEUE}-stag.yaml .
     - /usr/local/bin/skaffold deploy -p profile-${APP_NAME_API_SAMPLE_QUEUE}-stag   -a build_sync.json
+
+  only:
+    refs:
+      - stag
+
+deploy_APP_NAME_API_DOMAIN_QUEUE_stag:
+  stage: deploy
+  image:  968557029040.dkr.ecr.ap-southeast-1.amazonaws.com/base-cicd:alpine-helm-3.0.1
+  tags:
+  - esol-stag
+  script:
+    - *kubectl_config
+    - mv /apps/helm-template .
+    - mv /apps/helm-template-cronjob .
+    - |
+      if [ "$CI_COMMIT_REF_NAME" == "stag" ]; then
+        sed -i -e "s#\[NAMESPACE\]#$NAMESPACE_STAG#g" skaffold.yaml
+        sed -i -e "s#\[APP_NAME\]#$APP_NAME_API_DOMAIN_QUEUE#g" skaffold.yaml
+        sed -i -e "s#\[CONTAINER_REPO\]#$CONTAINER_REPO_ASIA_STAG#g" skaffold.yaml
+        sed -i -e "s#\[CI_COMMIT_REF_NAME\]#$CI_COMMIT_REF_NAME#g" skaffold.yaml
+      fi
+    - git clone https://read-token:$GITLAB_TOKEN@gitlab.rinznetwork.com/rinz-io-devops/helm-value/$HELM_VALUE_FOLDER/$IMAGE_NAME.git
+    - mv $IMAGE_NAME/${APP_NAME_API_DOMAIN_QUEUE}-stag.yaml .
+    - /usr/local/bin/skaffold deploy -p profile-${APP_NAME_API_DOMAIN_QUEUE}-stag   -a build_sync.json
 
   only:
     refs:

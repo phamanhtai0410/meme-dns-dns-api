@@ -1,7 +1,7 @@
 import pydash as py_
 from lib.utils import dt_utcnow
 
-from exceptions.nfts import NsNftNotFoundEx
+from exceptions.nfts import NftNotFoundEx
 from exceptions.requests import IsNotValidObjIdEx
 
 from models import NsNftModel
@@ -87,7 +87,7 @@ class NsNFTsService:
         })
 
         if not _nft:
-            raise NsNftNotFoundEx
+            raise NftNotFoundEx
 
         return py_.get(_nft, '0')
 
@@ -128,7 +128,7 @@ class NsNFTsService:
         print(_result)
 
         if not _result:
-            raise NsNftNotFoundEx
+            raise NftNotFoundEx
 
 
         return _result

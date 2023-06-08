@@ -41,12 +41,13 @@ class NftIsNotOnMarketEx(Exception):
 
     pass
 
-class NsNftNotFoundEx(Exception):
-    def __init__(self, msg='Ns Nft not found', *args: object, **kwargs) -> None:
+
+class NftNotFoundEx(Exception):
+    def __init__(self, msg='Nft not found', *args: object, **kwargs) -> None:
         super().__init__(*args)
         self.status_code = 400
         self.msg = msg
         self.errors = kwargs.get('errors', [])
-        self.error_code = 'E_NS_NFT_NOT_FOUND'
+        self.error_code = 'E_NFT_NOT_FOUND'
 
     pass

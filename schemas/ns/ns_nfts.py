@@ -20,7 +20,6 @@ class NsNFTsRequestSchema(RequestSchema):
 
 
 class NsNFTSchema(Schema):
-    
     class Meta:
         unknown = EXCLUDE
         ordered = True

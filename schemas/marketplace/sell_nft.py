@@ -14,5 +14,9 @@ class SellNftsSchema(Schema):
     nft_id = ObjectIdField(required=True)
     user_address = fields.String(required=True)
     # NOTE: in day
-    buy_deadline = fields.Integer(required=True, validate=validate.Range(min=365))
+    buy_deadline = fields.Integer(required=True, validate=validate.OneOf([
+        7,
+        30,
+        90
+    ]))
     price = fields.Float(required=True, validate=validate_price)

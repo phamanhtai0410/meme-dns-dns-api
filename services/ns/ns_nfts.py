@@ -34,12 +34,35 @@ class NsNFTsService:
         _on_market = True if _buy_deadline > _now else False
         return _on_market
 
+    @staticmethod
+    def mapping_nft_detail(nft_items):
+        _nft_contracts = {}
+
+        def get_nft_detail(item):
+            _on_market = NsNFTsService.is_nft_on_market(item=item)
+            return {
+                **item,
+                'chain_id': py_.get(item, 'chain_id'),
+                # NOTE: if nft does not have previous price on sale will get default price
+                'price': py_.get(item, 'price'),
+                'on_market': _on_market,
+            }
+
+        _items = []
+
+        for _item in nft_items:
+            # NOTE: get detail of nft
+            _item = get_nft_detail(_item)
+            _items.append(_item)
+
+        return _items
+
 
     @classmethod
     def get_nfts(
             cls,
-            page,
-            page_size,
+            page=1,
+            page_size=10,
             chain: str = None,
             sort_field: str = None,
             sort_type: str = None,
@@ -71,6 +94,13 @@ class NsNFTsService:
             sort=_sort,
             func_sort=_func_sort
         )
+
+        _items = NsNFTsService.mapping_nft_detail(py_.get(_results, 'items'))
+
+        print(_items)
+
+        py_.set_(_results, 'items', _items)
+
 
         return _results
 
@@ -117,9 +147,13 @@ class NsNFTsService:
     def get_by_token_id(params):
         _token_id = py_.get(params, 'token_id')
 
-        _result = NsNftModel.find_one({
-            'token_id': _token_id
-        })
+        _result = NsNFTsService.get_nfts(
+            filter={
+                'token_id': _token_id
+            }
+        )
+
+        _result = py_.get(_result, 'items.0', None)
 
         print(_result)
 

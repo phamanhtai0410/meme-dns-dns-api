@@ -5,4 +5,4 @@ class MarketplaceNFTDetailRequestSchema(Schema):
     class Meta:
         unknown = RAISE
 
-    token_id = fields.Str(required=True)
+    token_id = fields.String(required=True)

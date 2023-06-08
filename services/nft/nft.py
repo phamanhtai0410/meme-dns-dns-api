@@ -177,7 +177,7 @@ class NFTsServices:
     def check_owner_nft(user_address, nft_id):
         _nft = NsNftModel.find_one({
             '_id': nft_id,
-            'owner_address': user_address.lower()
+            'owner': user_address.lower()
         })
 
         if not _nft:
@@ -293,7 +293,7 @@ class NFTsServices:
             'token_id': py_.get(_nft, 'token_id'),
             'order_id': py_.get(_nft, 'order_id'),
             'price': py_.get(_nft, 'price'),
-            'sender': py_.get(_nft, 'owner_address'),
+            'sender': py_.get(_nft, 'owner'),
             'receiver': None,
             'nft_id': nft_id,
             'currency_address': py_.get(_nft, 'currency_address'),

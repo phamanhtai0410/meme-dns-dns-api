@@ -24,7 +24,7 @@ class SMCSignatureService:
         if not _nft or not NFTsServices.is_nft_on_market(item=_nft):
             raise NftIsNotOnMarketEx
 
-        _owner_address = py_.get(_nft, 'owner_address')
+        _owner_address = py_.get(_nft, 'owner')
 
         if _owner_address.lower() == _to_address.lower():
             raise NftTradeOwnerAddressCanNotEqualToAddress

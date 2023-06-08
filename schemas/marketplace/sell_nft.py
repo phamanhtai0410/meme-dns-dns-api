@@ -19,5 +19,4 @@ class SellNftsSchema(Schema):
         30,
         90
     ]))
-    currency_address = fields.String(required=True)
     price = fields.Float(required=True, validate=validate_price)

@@ -62,7 +62,6 @@ def on_trade_nft(event):
             'nft_id': ObjectId(get(_sell_order, 'nft_id')),
             'sender': ObjectId(get(_sell_order, 'sender')),
             'receiver': ObjectId(get(_sell_order, 'receiver')),
-            'currency_address': get(_sell_order, 'currency_address'),
             'action': 'BUY',
             'data': get(_sell_order, 'data'),
             'updated_time': dt_utcnow(),

@@ -218,7 +218,6 @@ class NFTsServices:
             'nft_id': py_.get(_log_data, 'nft_id'),
             'sender': py_.get(_log_data, 'user_address'),
             'receiver': None,
-            'currency_address': py_.get(_log_data, 'currency_address'),
             'action': MarketplaceAction.SELL,
             'data': _log_data,
             'created_by': 'dns-api:services:NFTsServices:sell_user_nfts'
@@ -296,7 +295,6 @@ class NFTsServices:
             'sender': py_.get(_nft, 'owner'),
             'receiver': None,
             'nft_id': nft_id,
-            'currency_address': py_.get(_nft, 'currency_address'),
             'action': MarketplaceAction.CANCEL_SELL,
             'data': _nft,
             'created_by': 'dns-api:services:NFTsServices:sell_user_nfts'

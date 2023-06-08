@@ -27,7 +27,6 @@ class NftDao(DaoModel):
     def sell_nft(self, sell_data):
         _nft_id = py_.get(sell_data, 'nft_id')
         _buy_deadline = py_.get(sell_data, 'buy_deadline')        
-        _currency_address = py_.get(sell_data, 'currency_address') 
         _price = py_.get(sell_data, 'price')       
         _order_id = self.get_order_id()
 
@@ -35,7 +34,6 @@ class NftDao(DaoModel):
             '_id': _nft_id
         }, {
             'buy_deadline': _buy_deadline,
-            'currency_address': _currency_address,
             'order_id': _order_id,
             'price': _price,
             'updated_by': 'dns-api:model:NftModel:sell_nft'

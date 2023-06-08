@@ -29,31 +29,17 @@ class SMCSignatureService:
         if _owner_address.lower() == _to_address.lower():
             raise NftTradeOwnerAddressCanNotEqualToAddress
 
-        _nft_contract = NFTContractsModel.find_one({
-            'contract': py_.get(_nft, 'contract')
-        })
-        if not _nft_contract or py_.get(_nft_contract, 'chain_id') != _chain_id:
-            raise NftContractNotFoundEx
-
-        _currency_address = py_.get(_nft, 'currency_address')
-        _currency = CryptoCurrenciesModel.find_one({
-            'contract_address': _currency_address
-        })
-
-        if not _currency:
-            raise CurrencyTokenNotExceptEx
-
         _sign_data = {
             'chain_id': _chain_id,
             'order_id': py_.get(_nft, 'order_id'),
             'to_address': _to_address,
             'nft_address': py_.get(_nft, 'contract'),
-            'token_id': py_.get(_nft, 'token_id'),
+            'token_id': py_.to_integer(py_.get(_nft, 'token_id')),
             'price': py_.get(_nft, 'price'),
             'owner_address': _owner_address,
-            'currency_address': _currency_address,
-            'currency_decimal': py_.get(_currency, 'decimal'),
-            'standard': 1
+            'standard': 1,
+            'currency_address': '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE',
+            'currency_decimal': 18
         }
 
         _signature_data = SignatureHelper.generate_buy_nft_signature(data=_sign_data)

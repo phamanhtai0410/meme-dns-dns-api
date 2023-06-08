@@ -57,6 +57,8 @@ class SignatureHelper:
             _deadline
         ]
 
+        print(_value_list)
+
         _message_hash = web3.Web3.solidity_keccak(_type_list, _value_list).hex()
         _msg = web3.Web3.solidity_keccak(
             ["string", "bytes32"],

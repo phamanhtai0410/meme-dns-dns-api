@@ -35,6 +35,7 @@ class NsNFTSchema(Schema):
     price = fields.Float(default=0, missing=0)
     base_cost = fields.String(default='0', missing='0')
     buy_deadline = DatetimeField(allow_none=True)
+    created_time = DatetimeField(allow_none=True)
 
 
 class NsNFTsResponseSchema(Schema):

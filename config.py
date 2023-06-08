@@ -51,3 +51,14 @@ class Config:
 
     TOP_LEVEL_DOMAIN = '.meme'
 
+    SIGNATURE_EXPIRE_TIME = 60 * 60
+    SIGNATURE_BUY_NFT_EXPIRE_TIME = 60 * 60
+    BLOCKCHAIN_DECIMALS = {
+        '0': 'wei',
+        '3': 'kwei',
+        '6': 'mwei',
+        '9': 'gwei',
+        '12': 'szabo',
+        '15': 'finney',
+        '18': 'ether'
+    }

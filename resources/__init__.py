@@ -10,6 +10,7 @@ from resources.hello import HelloWorld
 from resources.user import user_resources
 from resources.ns import ns_resources
 from resources.marketplace import marketplace_resources
+from resources.smc import smc_resources
 
 api_resources = {
     '/hello': HelloWorld,
@@ -18,4 +19,5 @@ api_resources = {
     **{f'/user{k}': val for k, val in user_resources.items()},
     **{f'/ns{k}': val for k, val in ns_resources.items()},
     **{f'/marketplace{k}': val for k, val in marketplace_resources.items()},
+    **{f'/smc{k}': val for k, val in smc_resources.items()},
 }

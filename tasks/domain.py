@@ -45,7 +45,7 @@ def task_register_domain(event: str):
             'domain_name': f'{_domain_name}{Config.TOP_LEVEL_DOMAIN}',
             'owner': py_.get(_args, 'owner').lower(),
             'expires': py_.get(_args, 'expires'),
-            'base_cost': float(from_wei(py_.get(_args, 'baseCost'), 'ether')),
+            'base_cost': '{0:f}'.format((from_wei(py_.get(_args, 'baseCost'), 'ether'))),
             'chain_id': py_.get(event, 'chain'),
             'created_by': 'tasks:domain:task_register_domain'
         }

@@ -8,7 +8,7 @@ from exceptions.nfts import NftIsOnMarketEx, NftNotFoundEx, UserNotOwnNftEx
 from exceptions.requests import IsNotValidObjIdEx
 from lib.enums.nft import MarketplaceAction
 from lib.logger import debug
-from models import OrderModel, DevMintOrdersModel, NsNftModel
+from models import OrdersModel, DevMintOrdersModel, NsNftModel
 from lib import dt_utcnow
 from connect import redis_cluster
 from worker import worker
@@ -210,7 +210,7 @@ class NFTsServices:
             'buy_deadline': _deadline
         }
 
-        OrderModel.insert_one({
+        OrdersModel.insert_one({
             'chain': py_.get(_log_data, 'chain'),
             'token_id': py_.get(_log_data, 'token_id'),
             'order_id': _order_id,
@@ -288,7 +288,7 @@ class NFTsServices:
 
         NsNftModel.cancel_sell_nft(nft_id=nft_id)
 
-        OrderModel.insert_one({
+        OrdersModel.insert_one({
             'chain': py_.get(_nft, 'chain'),
             'token_id': py_.get(_nft, 'token_id'),
             'order_id': py_.get(_nft, 'order_id'),

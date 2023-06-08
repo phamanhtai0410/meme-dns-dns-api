@@ -173,10 +173,10 @@ class NFTsServices:
         return _result
 
     @staticmethod
-    def check_owner_nft(user_id, nft_id):
+    def check_owner_nft(user_address, nft_id):
         _nft = NsNftModel.find_one({
             '_id': nft_id,
-            'user': bson.objectid.ObjectId(user_id)
+            'owner_address': user_address.lower()
         })
 
         if not _nft:
@@ -185,10 +185,11 @@ class NFTsServices:
         return _nft
 
     @staticmethod
-    def sell_nfts(user_id, form_data):
+    def sell_nfts(form_data):
         _nft_id = py_.get(form_data, 'nft_id')
+        _user_address = py_.get(form_data, 'user_address', '')
 
-        _nft = NFTsServices.check_owner_nft(user_id=user_id, nft_id=_nft_id)
+        _nft = NFTsServices.check_owner_nft(user_address=_user_address, nft_id=_nft_id)
 
         if NFTsServices.is_nft_on_market(item=_nft):
             raise NftIsOnMarketEx
@@ -214,7 +215,7 @@ class NFTsServices:
             'order_id': _order_id,
             'price': py_.get(_log_data, 'price'),
             'nft_id': py_.get(_log_data, 'nft_id'),
-            'sender': py_.get(_log_data, 'user'),
+            'sender': py_.get(_log_data, 'user_address'),
             'receiver': None,
             'currency_address': py_.get(_log_data, 'currency_address'),
             'action': MarketplaceAction.SELL,

@@ -48,3 +48,6 @@ class Config:
 
     WALLET_IAPI = os.getenv('WALLET_IAPI')
     CONFIRM_BLOCK = 1
+
+    TOP_LEVEL_DOMAIN = '.meme'
+

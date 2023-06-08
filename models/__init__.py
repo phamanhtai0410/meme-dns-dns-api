@@ -13,3 +13,6 @@ from models.order import OrderDao
 
 # TemplatesModel = DaoModel(col=connect_db.db.templates, redis=redis_cluster)
 OrderModel = OrderDao(col=connect_db.db.orders, redis=redis_cluster, project=Config.PROJECT, broker=Config.BROKER_URL)
+
+NsNftModel = DaoModel(col=connect_db.db.ns_nfts, redis=redis_cluster, project=Config.PROJECT, broker=Config.BROKER_URL)
+TxLogsModel = DaoModel(col=connect_db.db.tx_logs, redis=redis_cluster, project=Config.PROJECT, broker=Config.BROKER_URL)

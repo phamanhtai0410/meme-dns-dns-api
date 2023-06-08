@@ -277,13 +277,13 @@ class NFTsServices:
         }
 
     @staticmethod
-    def cancel_sell_nfts(user_id, nft_id):
+    def cancel_sell_nfts(user_address, nft_id):
         if not bson.objectid.ObjectId.is_valid(nft_id):
             raise IsNotValidObjIdEx
 
         nft_id = bson.objectid.ObjectId(nft_id)
 
-        _nft = NFTsServices.check_owner_nft(user_id=user_id, nft_id=nft_id)
+        _nft = NFTsServices.check_owner_nft(user_address=user_address, nft_id=nft_id)
 
         NsNftModel.cancel_sell_nft(nft_id=nft_id)
 
@@ -292,7 +292,7 @@ class NFTsServices:
             'token_id': py_.get(_nft, 'token_id'),
             'order_id': py_.get(_nft, 'order_id'),
             'price': py_.get(_nft, 'price'),
-            'sender': py_.get(_nft, 'user'),
+            'sender': py_.get(_nft, 'owner_address'),
             'receiver': None,
             'nft_id': nft_id,
             'currency_address': py_.get(_nft, 'currency_address'),

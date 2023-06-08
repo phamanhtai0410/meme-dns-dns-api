@@ -36,7 +36,6 @@ class NFTsServices:
                 # NOTE: if nft does not have previous price on sale will get default price
                 'price': py_.get(item, 'price'),
                 'on_market': _on_market,
-                'exchange_address': py_.get(_nft_contracts[contract], 'exchange_address')
             }
 
         _items = []
@@ -97,6 +96,8 @@ class NFTsServices:
         )
 
         _items = NFTsServices.mapping_nft_detail(py_.get(_results, 'items'))
+
+        print(_items)
 
         py_.set_(_results, 'items', _items)
 

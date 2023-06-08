@@ -97,10 +97,6 @@ class NsNFTsService:
         _page_size = py_.get(params, 'page_size', default=10)
         _sort_field = py_.get(params, 'sort_field', default=None)
         _sort_type = py_.get(params, 'sort_type', default=None)
-        _contracts = py_.get(params, 'contracts', default=None)
-
-        if not _contracts:
-            return {}
 
         # NOTE: if buy_deadline existed and valid with time -> on_market will mark at true
         _result = NsNFTsService.get_nfts(

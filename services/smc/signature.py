@@ -74,7 +74,7 @@ class SMCSignatureService:
             'token_id': py_.to_integer(py_.get(_nft, 'token_id')),
             'price': py_.get(_nft, 'price'),
             'owner_address': _owner_address,
-            'standard': 1,
+            'standard': 0,
             'currency_address': '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE',
             'currency_decimal': 18
         }

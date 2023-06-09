@@ -33,7 +33,7 @@ class NsNFTSchema(Schema):
     chain_id = fields.Integer(required=True)
     metadata_link = fields.String(default='', missing='', allow_none=True)
     image_url = fields.String(default='', missing='', allow_none=True)
-    price = fields.Float(default=0, missing=0, allow_none=True)
+    price = fields.String(default='0', missing='0', allow_none=True)
     base_cost = fields.String(default='0', missing='0')
     buy_deadline = DatetimeField(allow_none=True)
     on_market = fields.Boolean(default=False, missing=False)

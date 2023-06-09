@@ -5,6 +5,7 @@
         -
 """
 import pydash as py_
+import bson
 
 from lib import DaoModel
 from lib.constants import NFT_CURRENT_ORDER_ID_KEY
@@ -31,7 +32,7 @@ class NftDao(DaoModel):
         _order_id = self.get_order_id()
 
         self.update_one({
-            '_id': _nft_id
+            '_id': _nft_id if isinstance(_nft_id, bson.objectid.ObjectId) else bson.objectid.ObjectId(_nft_id)
         }, {
             'buy_deadline': _buy_deadline,
             'order_id': _order_id,
@@ -45,7 +46,7 @@ class NftDao(DaoModel):
     
     def cancel_sell_nft(self, nft_id):
         self.update_one({
-            '_id': nft_id
+            '_id': nft_id if isinstance(nft_id, bson.objectid.ObjectId) else bson.objectid.ObjectId(nft_id)
         }, {
             'buy_deadline': None, #NOTE: update buy_deadline to 0 will remove sell nft
             'updated_by': 'dns-api:model:NftModel:cancel_sell_nft'

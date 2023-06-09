@@ -1,9 +1,11 @@
 import datetime
+import traceback
 
 import web3
 import pydash as py_
 import bson
 from bson import ObjectId
+
 from exceptions.nfts import NftIsOnMarketEx, NftNotFoundEx, UserNotOwnNftEx
 from exceptions.requests import IsNotValidObjIdEx
 from lib.enums.nft import MarketplaceAction
@@ -12,7 +14,6 @@ from models import OrdersModel, DevMintOrdersModel, NsNftModel
 from lib import dt_utcnow
 from connect import redis_cluster
 from worker import worker
-
 
 class NFTsServices:
 

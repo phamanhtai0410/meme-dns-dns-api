@@ -33,7 +33,7 @@ Run:
 
 Celery worker:
 ```commandline
-   celery --app worker worker -Q dns-sample-queue -l INFO -c 4
+   celery --app worker worker -Q dns-domain-queue -l INFO -c 4
 ```
 
 

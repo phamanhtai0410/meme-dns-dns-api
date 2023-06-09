@@ -202,6 +202,7 @@ class NFTsServices:
 
         _order_id = NsNftModel.sell_nft(sell_data={
             **form_data,
+            'price': py_.to_string(py_.get(form_data, 'price')),
             'buy_deadline': _deadline
         })
 

@@ -56,7 +56,7 @@ def on_transfer_nft(event):
             'updated_time': dt_utcnow(),
             'updated_by': 'dns-api:tasks:trade',
             'buy_deadline': 0,
-            'owner': _from
+            'owner': _owner
         }
         _filter = {
             'contract': _contract,

@@ -22,28 +22,28 @@ class SignatureHelper:
 
         _price = _web3.to_wei(str(_price), py_.get(Config.BLOCKCHAIN_DECIMALS, str(_currency_decimal), 'ether'))
 
-        _allAmounts = [_price]
+        _allAmounts = [py_.to_string(_price)]
 
-        _from_to = [_owner_address, _to_address]
-        _nft_and_token = [_nft_address, _currency_address]
-        _id_and_amount = [_nft_id, _standard]
+        _from_to = [py_.to_string(_owner_address), py_.to_string(_to_address)]
+        _nft_and_token = [py_.to_string(_nft_address), py_.to_string(_currency_address)]
+        _id_and_amount = [py_.to_string(_nft_id), py_.to_string(_standard)]
         # FIXME: current is only have seller does not have any other
         _additional_token_receivers = []
 
         # FIXME: current is only owner get all amount
-        _all_amounts = [_price]
+        _all_amounts = [py_.to_string(_price)]
 
-        _deadline = int(dt_utcnow().timestamp() + Config.SIGNATURE_BUY_NFT_EXPIRE_TIME)
+        _deadline = py_.to_string(int((dt_utcnow().timestamp() + Config.SIGNATURE_BUY_NFT_EXPIRE_TIME)))
 
         _type_list = [
             "uint256",
             "uint256",
-            "address[2]",
-            "address[2]",
-            "uint256[2]",
+            "string[2]",
+            "string[2]",
+            "string[2]",
             "address[]",
-            "uint256[]",
-            "uint256",
+            "string[]",
+            "string",
         ]
 
         _value_list = [

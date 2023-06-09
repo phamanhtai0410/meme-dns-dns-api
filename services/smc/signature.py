@@ -71,7 +71,7 @@ class SMCSignatureService:
             'order_id': py_.get(_nft, 'order_id'),
             'to_address': _to_address,
             'nft_address': py_.get(_nft, 'contract'),
-            'token_id': py_.to_integer(py_.get(_nft, 'token_id')),
+            'token_id': py_.get(_nft, 'token_id'),
             'price': py_.get(_nft, 'price'),
             'owner_address': _owner_address,
             'standard': 1,

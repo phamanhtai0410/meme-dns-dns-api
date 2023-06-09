@@ -2,6 +2,7 @@ import web3
 import pydash as py_
 from config import Config
 from lib import dt_utcnow
+from eth_utils import to_int
 
 
 class SignatureHelper:
@@ -14,7 +15,8 @@ class SignatureHelper:
         _to_address = _web3.to_checksum_address(py_.get(data, 'to_address'))
         _nft_address = _web3.to_checksum_address(py_.get(data, 'nft_address'))
         _currency_address = _web3.to_checksum_address(py_.get(data, 'currency_address'))
-        _nft_id = py_.get(data, 'token_id')
+        _nft_id = to_int(text=py_.get(data, 'token_id'))
+
         _price = py_.get(data, 'price')
         _owner_address = _web3.to_checksum_address(py_.get(data, 'owner_address'))
         _currency_decimal = py_.get(data, 'currency_decimal')

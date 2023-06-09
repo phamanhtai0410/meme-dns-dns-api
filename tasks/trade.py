@@ -53,7 +53,7 @@ def on_trade_nft(event):
             debug(f"--- Sell order id {_order_id} not found ---")
             return 'DONE - on_trade_nft'
 
-        OrdersModel.db().insert_one({
+        OrdersModel.insert_one({
             'chain': get(_sell_order, 'chain'),
             'token_id': get(_sell_order, 'token_id'),
             'order_id': get(_sell_order, 'order_id'),

@@ -42,7 +42,7 @@ def on_transfer_nft(event):
                 'event': json.dumps(event),
                 'block_number': get(event, 'blockNumber'),
                 "updated_time": dt_utcnow(),
-                "created_time": {"$cond": [{"$not": ["$created_time"]}, dt_utcnow(), "$created_time"]},
+                'updated_by': 'dns-api:tasks:transfer'
 
             },
             upsert=True,
@@ -54,6 +54,7 @@ def on_transfer_nft(event):
 
         _update = {
             'updated_time': dt_utcnow(),
+            'updated_by': 'dns-api:tasks:trade',
             'buy_deadline': 0,
             'owner': _from
         }

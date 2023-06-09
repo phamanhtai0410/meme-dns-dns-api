@@ -37,8 +37,7 @@ def on_trade_nft(event):
                 'event': json.dumps(event),
                 'block_number': get(event, 'blockNumber'),
                 "updated_time": dt_utcnow(),
-                "created_time": {"$cond": [{"$not": ["$created_time"]}, dt_utcnow(), "$created_time"]},
-
+                'updated_by': 'dns-api:tasks:trade'
             },
             upsert=True,
             return_document=ReturnDocument.BEFORE

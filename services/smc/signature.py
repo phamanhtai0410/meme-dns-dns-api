@@ -91,6 +91,6 @@ class SMCSignatureService:
             'deadline': py_.get(_signature_data, 'deadline'),
             'type': SignatureType.BUY,
             'created_by': 'dns-api:SMCSignatureService:SM:create_buy_nft_signature'
-        }, worker=True)
+        })
 
         return _signature_data

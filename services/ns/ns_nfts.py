@@ -385,3 +385,14 @@ class NsNFTsService:
 
 
         return {}
+
+    @classmethod
+    def get_nft_by_domain(cls, domain_name):
+        _result = NsNftModel.find_one({
+            'domain_name': domain_name
+        })
+
+        if not _result:
+            raise NftNotFoundEx
+
+        return _result

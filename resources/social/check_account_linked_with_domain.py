@@ -19,7 +19,7 @@ class CheckAccountLinkedWithDomainResource(Resource):
         # response=CheckAccountLinkedWithDomainResponseSchema(),
         # login_required=True
     )
-    def get(self, form_data):
+    def post(self, form_data):
         # _page = get(params, 'page')
         # _page_size = get(params, 'page_size')
         _social_name = get(form_data, 'social_name')

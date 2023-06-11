@@ -11,15 +11,15 @@ from connect import security
 from models import SocialsModel
 
 
-from schemas.social.accounts_link_with_domains import AccountsLinkWithDomainsRequestSchema, \
-    AccountsLinkWithDomainsResponseSchema
+from schemas.social.accounts_linked_with_domains import AccountsLinkedWithDomainsRequestSchema, \
+    AccountsLinkedWithDomainsResponseSchema
 
 
-class AccountsLinkWithDomainsResource(Resource):
+class AccountsLinkedWithDomainsResource(Resource):
 
     @security.http(
-        params=AccountsLinkWithDomainsRequestSchema(),
-        response=AccountsLinkWithDomainsResponseSchema(),
+        params=AccountsLinkedWithDomainsRequestSchema(),
+        response=AccountsLinkedWithDomainsResponseSchema(),
         # login_required=True
     )
     def get(self, params):

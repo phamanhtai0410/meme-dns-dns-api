@@ -4,7 +4,7 @@ from lib import ObjectIdField, DatetimeField
 from lib.enums.social import SocialNames
 
 
-class AccountsLinkWithDomainsRequestSchema(Schema):
+class AccountsLinkedWithDomainsRequestSchema(Schema):
     class Meta:
         unknown = RAISE
 
@@ -29,11 +29,9 @@ class SocialSchema(Schema):
     created_time = DatetimeField(allow_none=True)
 
 
-class AccountsLinkWithDomainsResponseSchema(Schema):
+class AccountsLinkedWithDomainsResponseSchema(Schema):
     class Meta:
         unknown = EXCLUDE
         ordered = True
 
     items = fields.List(fields.Nested(SocialSchema()), data_key='items', missing=[])
-
-

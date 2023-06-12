@@ -1,6 +1,7 @@
 import datetime
 import pydash as py_
 from lib.enums.nft import MarketplaceAction
+from lib.enums.tx_type import TxType
 from lib.utils import dt_utcnow
 import traceback
 import bson
@@ -8,7 +9,7 @@ import bson
 from exceptions.nfts import NftIsNotOnMarketEx, NftIsOnMarketEx, NftNotFoundEx, UserNotOwnNftEx
 from exceptions.requests import IsNotValidObjIdEx
 
-from models import NsNftModel, OrdersModel
+from models import NsNftModel, OrdersModel, TxLogsModel
 
 from eth_account import Account
 from eth_utils import from_wei, to_checksum_address
@@ -49,8 +50,14 @@ class NsNFTsService:
 
         def get_nft_detail(item):
             _on_market = NsNFTsService.is_nft_on_market(item=item)
+            _tx_log = TxLogsModel.find_one({
+                'token_id': py_.get(item, 'token_id'),
+                'tx_type': TxType.NAME_REGISTERED
+            })
+            _tx_hash = py_.get(_tx_log, 'tx_hash', '')
             return {
                 **item,
+                'tx_hash': _tx_hash,
                 'chain_id': py_.get(item, 'chain_id'),
                 # NOTE: if nft does not have previous price on sale will get default price
                 'price': py_.get(item, 'price'),

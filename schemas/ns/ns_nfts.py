@@ -25,6 +25,7 @@ class NsNFTSchema(Schema):
         ordered = True
 
     _id = ObjectIdField(required=True)
+    tx_hash = fields.String(allow_none=True, default='', missing='')
     order_id = fields.Integer(required=False, allow_none=True)
     token_id = fields.String(required=True)
     domain_name = fields.String(required=True)

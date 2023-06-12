@@ -402,4 +402,6 @@ class NsNFTsService:
         if not _result:
             raise NftNotFoundEx
 
-        return _result
+        _nft = NsNFTsService.mapping_nft_detail([_result])
+
+        return py_.get(_nft, '0')

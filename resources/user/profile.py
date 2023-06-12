@@ -20,7 +20,7 @@ class UserProfileResource(Resource):
         login_required=False
     )
     def get(self, params):
-        _address = get(params, 'owner')
+        _address = get(params, 'owner', '').lower()
         _result = NsNFTsService.get_domains(address=_address)
 
         return {

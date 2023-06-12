@@ -403,3 +403,15 @@ class NsNFTsService:
             raise NftNotFoundEx
 
         return _result
+
+    @classmethod
+    def get_domains(cls, address):
+        _results = NsNftModel.find({
+            'owner': address
+        })
+        _results = list(_results)
+        _ns_nfts = []
+        for _result in _results:
+            _ns_nfts.append(py_.get(_result, 'domain_name'))
+
+        return _ns_nfts

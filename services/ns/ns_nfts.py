@@ -405,3 +405,15 @@ class NsNFTsService:
         _nft = NsNFTsService.mapping_nft_detail([_result])
 
         return py_.get(_nft, '0')
+
+    @classmethod
+    def get_domains(cls, address):
+        _results = NsNftModel.find({
+            'owner': address
+        })
+        _results = list(_results)
+        _ns_nfts = []
+        for _result in _results:
+            _ns_nfts.append(py_.get(_result, 'domain_name'))
+
+        return _ns_nfts

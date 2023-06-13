@@ -4,5 +4,5 @@
         -
         -
 """
-from .ens import ENSServices, SpaceIDServices, BaseNameServices
+from .ens import ENSServices, SpaceIDServices, BaseNameServices, MNSServices
 from .nft.nft import NFTsServices

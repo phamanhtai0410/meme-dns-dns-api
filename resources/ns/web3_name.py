@@ -16,8 +16,6 @@ class NameServiceWeb3NamesResource(Resource):
 
     @security.http(
         params=NameServiceWeb3NamesRequestSchema(),
-        # response=NFTsResponseSchema(),
-        # login_required=True
     )
     def get(self, params):
         _wallet_address = get(params, 'wallet_address', '').lower()

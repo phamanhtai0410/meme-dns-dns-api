@@ -5,9 +5,11 @@
         -
 """
 from flask_restful import Resource
+from pydash import get
 
 from connect import security
 from schemas.ns.wallet_address import NameServiceWalletAddressRequestSchema
+from services import MNSServices
 
 
 class NameServiceWalletAddressResource(Resource):
@@ -18,12 +20,10 @@ class NameServiceWalletAddressResource(Resource):
         # login_required=True
     )
     def get(self, params):
+        _web3_name = get(params, 'web3_name', '').lower()
+
+        _address = MNSServices.address(name=_web3_name)
+
         return {
-            "_id": "64672990bb6989fad32ad20b",
-            "bns": "mockup.meme",
-            "wallet": "0x0Db2d712339Ca567d4660F19E0788701129b5571",
-            "bnsHashName": "0x183dc2acbb3dc2dbacc062d8c72c3644b4edf934164d13b4c1d44f05e1917393",
-            "label": "mockup",
-            "tld": "meme",
-            "__v": 0
+            'mns': _address
         }

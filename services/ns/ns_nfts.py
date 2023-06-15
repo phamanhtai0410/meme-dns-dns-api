@@ -330,6 +330,7 @@ class NsNFTsService:
         _log_data = {
             **_nft,
             **form_data,
+            'price': '{0:f}'.format((from_wei(_price, 'ether'))),
             'buy_deadline': _deadline
         }
 
@@ -337,7 +338,7 @@ class NsNFTsService:
             'chain': py_.get(_log_data, 'chain'),
             'token_id': py_.get(_log_data, 'token_id'),
             'order_id': _order_id,
-            'price': py_.get(_log_data, 'price'),
+            'price': '{0:f}'.format((from_wei(_price, 'ether'))),
             'nft_id': py_.get(_log_data, 'nft_id'),
             'sender': py_.get(_log_data, 'user_address'),
             'receiver': None,
